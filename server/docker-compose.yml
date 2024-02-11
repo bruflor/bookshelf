@@ -1,18 +1,47 @@
-version: "3"
+version: "3.8"
+
 services:
   directus:
     image: directus/directus:10.9.0
+
     ports:
-      - 8055:8055
+      - "8055:8055"
+
     volumes:
       - ./database:/directus/database
       - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
+
     environment:
       KEY: "replace-with-random-value"
       SECRET: "replace-with-random-value"
       ADMIN_EMAIL: "admin@bookshelf.com"
       ADMIN_PASSWORD: "d1r3ctu5"
-      DB_CLIENT: "sqlite3"
-      DB_FILENAME: "/directus/database/data.db"
+      DB_CLIENT: 'postgresql'
+      DB_HOST: data-base
+      DB_PORT: "5432"
+      DB_DATABASE: "postgres"
+      DB_USER: "postgres"
+      DB_PASSWORD: "postgres"
+#      DB_FILENAME: "/directus/database/data.db"
       WEBSOCKETS_ENABLED: "true"
+
+    depends_on:
+      data-base:
+        condition: service_started
+
+  data-base:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - dev_db:/var/lib/postgresql/data
+
+
+volumes:
+  dev_db:
+    driver: local
+
