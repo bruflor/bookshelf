@@ -15,8 +15,8 @@ services:
     environment:
       KEY: "replace-with-random-value"
       SECRET: "replace-with-random-value"
-      ADMIN_EMAIL: "admin@bookshelf.com"
-      ADMIN_PASSWORD: "d1r3ctu5"
+      ADMIN_EMAIL: ${DIRECTUS_USER}
+      ADMIN_PASSWORD: ${DIRECTUS_PASSWORD}
       DB_CLIENT: 'postgresql'
       DB_HOST: data-base
       DB_PORT: "5432"
@@ -33,8 +33,8 @@ services:
   data-base:
     image: postgres:16-alpine
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
