@@ -8,7 +8,7 @@ const Button = styled.button`
   margin: 0 1em;
   padding: 0.25em 1em;
 `
-export const CreateAccount = () => {
+const CreateAccount = () => {
     return (
         <div>
             <h1>Create Account</h1>
@@ -16,3 +16,5 @@ export const CreateAccount = () => {
         </div>
     )   
 }
+
+export default CreateAccount

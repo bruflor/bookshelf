@@ -1,11 +1,12 @@
 import './App.css'
-import {CreateAccount} from "./pages/CreateAccount.tsx";
+import {BrowserRouter} from "react-router-dom";
+import {Router} from "./Router.tsx";
 
 function App() {
   return (
-    <>
-      <CreateAccount />
-    </>
+    <BrowserRouter >
+      <Router />
+    </BrowserRouter>
   )
 }
 
